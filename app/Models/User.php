@@ -50,8 +50,7 @@ class User extends Authenticatable
  */
     public function isSuperAdmin(): bool
     {
-        $role = Role::where('role', 'Super Admin')
-            ->where('user_id', $this->id)
+        $role = Role::where('name', 'SuperAdmin')
             ->first();
             
         return !$role ? false : true;
@@ -63,11 +62,9 @@ class User extends Authenticatable
     * @param Domain $domain
     * @return bool
     */
-    public function isAdmin(Domain $domain): bool
+    public function isAdmin(/* Domain $domain */): bool
     {
-        $role = Role::where('role', 'admin')
-            ->where('domain_id', $domain->id)
-            ->where('user_id', $this->id)
+        $role = Role::where('name', 'Administrator')
             ->first();
 
         return $role ? true : $this->isSuperAdmin();
