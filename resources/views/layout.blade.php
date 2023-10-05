@@ -23,6 +23,6 @@
 
 </head>
 
-@yield('page')
+@yield('body')
 
 </html>

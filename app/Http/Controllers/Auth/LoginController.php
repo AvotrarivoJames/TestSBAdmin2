@@ -19,7 +19,7 @@ class LoginController extends Controller
         $credentials = $request->validated();
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended('upload-pdf')->withSuccess('Login success!');
+            return redirect()->intended('dashboard')->withSuccess('Login success!');
         }
 
         return back()->withErrors('Login details are not valid');

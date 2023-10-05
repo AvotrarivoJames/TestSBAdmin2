@@ -42,4 +42,34 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    /**
+ * Check if user is the Super Admin.
+ *
+ * @return bool
+ */
+    public function isSuperAdmin(): bool
+    {
+        $role = Role::where('role', 'Super Admin')
+            ->where('user_id', $this->id)
+            ->first();
+            
+        return !$role ? false : true;
+    }
+
+    /**
+    * Check if user is the Admin of the Domain.
+    *
+    * @param Domain $domain
+    * @return bool
+    */
+    public function isAdmin(Domain $domain): bool
+    {
+        $role = Role::where('role', 'admin')
+            ->where('domain_id', $domain->id)
+            ->where('user_id', $this->id)
+            ->first();
+
+        return $role ? true : $this->isSuperAdmin();
+    }
 }

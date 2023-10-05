@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +18,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/register', [RegisterController::class, 'index'])->name('register-user');
+Route::post('/register', [RegisterController::class, 'signUp'])->name('register.custom');
+
+Route::get('login', [LoginController::class, 'index'])->name('auth.login');
+Route::post('/custom-login', [LoginController::class, 'login'])->name('login.custom');

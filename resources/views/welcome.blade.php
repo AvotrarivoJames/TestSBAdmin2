@@ -1,5 +1,5 @@
 @extends('layout')
-@section('page')
+@section('body')
 <body id="page-top">
 
     <!-- Page Wrapper -->

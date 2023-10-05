@@ -14,7 +14,7 @@ class RegisterController extends Controller
 
     public function index()
     {
-        return view('auth.registration');
+        return view('auth.register');
     }
       
     public function signUp(StoreUserRequest $request)
@@ -22,6 +22,8 @@ class RegisterController extends Controller
         $user = $this->userService->create($request->validated());
         Auth::login($user);
         
-        return redirect("upload-pdf")->withSuccess('You have signed-in');
+        return $user->isSuperAdmin 
+            ? redirect("dashboard")->withSuccess('You have signed-in')
+            : redirect("dashboard")->withSuccess('You have signed-in');
     }
 }
