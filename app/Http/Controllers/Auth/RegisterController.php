@@ -22,8 +22,9 @@ class RegisterController extends Controller
         $user = $this->userService->create($request->validated());
         Auth::login($user);
         
-        return $user->isSuperAdmin 
+        return redirect("/")->withSuccess('You have signed-in');
+        /* return $user->isSuperAdmin 
             ? redirect("dashboard")->withSuccess('You have signed-in')
-            : redirect("dashboard")->withSuccess('You have signed-in');
+            : redirect("dashboard")->withSuccess('You have signed-in');*/
     }
 }
