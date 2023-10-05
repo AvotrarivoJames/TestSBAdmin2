@@ -9,10 +9,7 @@ class Role extends Model
 {
     use HasFactory;
 
-    protected $fillable = 
-    [
-        'name',
-    ];
+    protected $fillable = ['name'];
 
     protected $hidden = 
     [
@@ -20,5 +17,5 @@ class Role extends Model
         'updated_at'
     ];
 
-    
+
 }
