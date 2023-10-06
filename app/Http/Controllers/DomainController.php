@@ -20,7 +20,7 @@ class DomainController extends Controller
      */
     public function create()
     {
-        //
+        return view('domain.register');
     }
 
     /**

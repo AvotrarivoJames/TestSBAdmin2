@@ -19,8 +19,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/register', [RegisterController::class, 'index'])->name('register-user');
-Route::post('/register', [RegisterController::class, 'signUp'])->name('register.custom');
+Route::get('register', [RegisterController::class, 'index'])->name('register-user');
+Route::post('register', [RegisterController::class, 'signUp'])->name('register.custom');
 
 Route::get('login', [LoginController::class, 'index'])->name('auth.login');
-Route::post('/custom-login', [LoginController::class, 'login'])->name('login.custom');
+Route::post('custom-login', [LoginController::class, 'login'])->name('login.custom');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('logout', [LoginController::class, 'logout'])->name('logout');
+
+});

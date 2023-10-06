@@ -17,23 +17,23 @@
                             <form action="{{ route('register.custom') }}" method="POST">
                                 @csrf
                                 <div class="form-group mb-3">
-                                    <input type="text" placeholder="Name" id="name" class="form-control" name="name" autofocus>
+                                    <input type="text" placeholder="Name" id="name" class="form-control @error('name') is-invalid @enderror" name="name" autofocus value="{{ old('name') }}">
                                     @if ($errors->has('name'))
-                                    <span class="text-danger">{{ $errors->first('name') }}</span>
+                                    <span class="invalid-feedback">{{ $errors->first('name') }}</span>
                                     @endif
                                 </div>
                                 <div class="form-group mb-3">
-                                    <input type="text" placeholder="Email" id="email_address" class="form-control"
-                                        name="email" autofocus>
+                                    <input type="text" placeholder="Email" id="email_address" class="form-control @error('email') is-invalid @enderror"
+                                        name="email" autofocus value="{{ old('email') }}">
                                     @if ($errors->has('email'))
-                                    <span class="text-danger">{{ $errors->first('email') }}</span>
+                                    <span class="invalid-feedback">{{ $errors->first('email') }}</span>
                                     @endif
                                 </div>
                                 <div class="form-group mb-3">
-                                    <input type="password" placeholder="Password" id="password" class="form-control"
+                                    <input type="password" placeholder="Password" id="password" class="form-control @error('password') is-invalid @enderror"
                                         name="password">
                                     @if ($errors->has('password'))
-                                    <span class="text-danger">{{ $errors->first('password') }}</span>
+                                    <span class="invalid-feedback">{{ $errors->first('password') }}</span>
                                     @endif
                                 </div>
                                 <div class="d-grid mx-auto">

@@ -22,15 +22,15 @@
                                     <form method="POST" action="{{ route('login.custom') }}">
                                         @csrf
                                         <div class="form-group mb-3">
-                                            <input type="text" placeholder="Email" id="email" class="form-control" name="email" autofocus>
+                                            <input type="text" placeholder="Email" id="email" class="form-control @error('email') is-invalid @enderror" name="email" autofocus  value="{{ old('email') }}">
                                             @if ($errors->has('email'))
-                                            <span class="text-danger">{{ $errors->first('email') }}</span>
+                                            <span class="invalid-feedback">{{ $errors->first('email') }}</span>
                                             @endif
                                         </div>
                                         <div class="form-group mb-3">
-                                            <input type="password" placeholder="Password" id="password" class="form-control" name="password">
+                                            <input type="password" placeholder="Password" id="password" class="form-control @error('password') is-invalid @enderror" name="password">
                                             @if ($errors->has('password'))
-                                            <span class="text-danger">{{ $errors->first('password') }}</span>
+                                            <span class="invalid-feedback">{{ $errors->first('password') }}</span>
                                             @endif
                                         </div>
                                         <div class="d-grid mx-auto">
