@@ -9,10 +9,13 @@ class RoleController extends Controller
 {
     /**
      * Display a listing of the resource.
+     * 
+     * @return \Illuminate\View\View
      */
     public function index()
     {
-        //
+        $roles = Role::all();
+        return view('roles.index', compact('roles'));
     }
 
     /**

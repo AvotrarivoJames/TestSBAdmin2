@@ -6,6 +6,7 @@ use App\Http\Requests\LoginRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Redirect;
 
 class LoginController extends Controller
 {
@@ -22,7 +23,7 @@ class LoginController extends Controller
             return redirect()->intended('dashboard')->withSuccess('Login success!');
         }
 
-        return back()->withErrors('Login details are not valid');
+        return Redirect::back()->withErrors(['password' => 'The password is wrong']);
     }
 
     public function logout() {
