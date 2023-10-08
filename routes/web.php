@@ -15,8 +15,8 @@ use App\Http\Controllers\Auth\RegisterController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/dashboard', function () {
+    return view('dashboard');
 });
 
 Route::get('register', [RegisterController::class, 'index'])->name('register-user');

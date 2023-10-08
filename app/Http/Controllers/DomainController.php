@@ -7,6 +7,7 @@ use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
 use Illuminate\Http\RedirectResponse;
+use App\Http\Requests\StoreDomainRequest;
 
 class DomainController extends Controller
 {
@@ -19,16 +20,15 @@ public function index(Request $request)
 {
     $keyword = $request->get('search');
 
-    $perPage = 25;
+    $perPage = $request->get('per_page');
 
-
-    if (!empty($keyword)) {
-        $domains = Domain::where('url', 'like', "%$keyword%")->paginate($perPage);
+    if(!empty($keyword) ) {
+        $domains = Domain::where('url', 'like', "%".$keyword."%")->paginate($perPage);
     } else {
-        $domains = Domain::latest()->paginate($perPage);
+        $domains = Domain::latest()->paginate(10);
     }
 
-    return view('pages.domain.index', compact('domains'));
+    return view('domain.index', compact('domains'));
 }
 
     /**
@@ -39,17 +39,17 @@ public function index(Request $request)
     {
         $domains = Domain::all();
 
-        return view('pages.domains.create', compact('domains'));
+        return view('domains.create', compact('domains'));
     }
 
     /**
      * Store a newly created resource in storage.
      * 
-     * @param Request $request
+     * @param StoreDomainRequest $request
      *
      * @return RedirectResponse|Redirector
      */
-    public function store(Request $request)
+    public function store(StoreDomainRequest $request)
     {
         Domain::create($request);
 
@@ -64,7 +64,7 @@ public function index(Request $request)
      */
     public function show(Domain $domain) : View
     {
-        return view('users.show', compact('domain'));
+        return view('domain.show', compact('domain'));
     }
 
     /**
@@ -75,18 +75,18 @@ public function index(Request $request)
      */
     public function edit(Domain $domain) : View
     {
-        return view('users.edit', compact('domain'));
+        return view('domain.edit', compact('domain'));
     }
 
     /**
      * Update the specified resource in storage.
      * 
      * @param Domain
-     * @param Request $request
+     * @param StoreDomainRequest $request
      *
      * @return RedirectResponse|Redirector
      */
-    public function update(Request $request, Domain $domain)
+    public function update(StoreDomainRequest $request, Domain $domain)
     {
         $domain->update($request->validated());
 

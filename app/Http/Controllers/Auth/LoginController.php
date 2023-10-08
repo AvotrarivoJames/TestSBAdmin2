@@ -20,7 +20,7 @@ class LoginController extends Controller
         $credentials = $request->validated();
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended('dashboard')->withSuccess('Login success!');
+            return redirect()->intended('/dashboard')->withSuccess('flash_message', 'Login success!');
         }
 
         return Redirect::back()->withErrors(['password' => 'The password is wrong']);
@@ -30,6 +30,6 @@ class LoginController extends Controller
         Session::flush();
         Auth::logout();
   
-        return Redirect('login');
+        return Redirect('/login');
     }
 }
