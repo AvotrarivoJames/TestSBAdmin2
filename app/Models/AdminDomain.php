@@ -15,6 +15,4 @@ class AdminDomain extends Model
             'role_id', 
             'domain_id'
         ];
-
-    
 }

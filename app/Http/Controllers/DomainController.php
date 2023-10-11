@@ -7,7 +7,7 @@ use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
 use Illuminate\Http\RedirectResponse;
-use App\Http\Requests\StoreDomainRequest;
+use App\Http\Requests\StoreAdminDomainRequest;
 
 class DomainController extends Controller
 {
@@ -39,17 +39,17 @@ public function index(Request $request)
     {
         $domains = Domain::all();
 
-        return view('domains.create', compact('domains'));
+        return view('domain.create', compact('domains'));
     }
 
     /**
      * Store a newly created resource in storage.
      * 
-     * @param StoreDomainRequest $request
+     * @param StoreAdminDomainRequest $request
      *
      * @return RedirectResponse|Redirector
      */
-    public function store(StoreDomainRequest $request)
+    public function store(StoreAdminDomainRequest $request)
     {
         Domain::create($request);
 
@@ -82,11 +82,11 @@ public function index(Request $request)
      * Update the specified resource in storage.
      * 
      * @param Domain
-     * @param StoreDomainRequest $request
+     * @param StoreAdminDomainRequest $request
      *
      * @return RedirectResponse|Redirector
      */
-    public function update(StoreDomainRequest $request, Domain $domain)
+    public function update(StoreAdminDomainRequest $request, Domain $domain)
     {
         $domain->update($request->validated());
 
